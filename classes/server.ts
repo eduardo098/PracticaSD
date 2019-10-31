@@ -33,9 +33,11 @@ export default class Server {
     private escucharSocket() {
         console.log("Escuchando conexiones");
         this.io.on('connect', cliente => {
+            const address = cliente.handshake.address;
             console.log("Nuevo cliente conectado");
+            console.log(address);
             socket.mensaje(cliente, this.io);
-           socket.desconectar(cliente); 
+            socket.desconectar(cliente); 
         });
     }
     start(callback: Function) {
